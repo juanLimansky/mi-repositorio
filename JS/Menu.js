@@ -50,59 +50,30 @@ const bebidas = [
 
 // AGREGAR PRODUCTOS AL HTML
 
-let categoria = ""
+const renderizarProductos = (productos, categoria, lugarDondeLoPone) => {
+    const arrayDePrueba = productos.filter(producto => producto.categoria == categoria)
+    console.log(arrayDePrueba)
 
-if (categoria == entradas1){
-for (const producto of productos) {
+for (const producto of arrayDePrueba) {
     let div = document.createElement("div");
-    div.innerHTML = `<img src=${productos.foto} data-aos="fade-up" class="fotos--Menu">
-                    <h3 class="nombres--Platos">${productos.nombre}</h3>
-                    <h4 class="descripcion--Platos">${productos.descripción} ($${productos.precio})</h4>
-                    <button id="${productos.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
-                    divEntradas1.appendChild(div)
-                }
-            }
-/*
-for (const entrada of entradas2) {
-    let div = document.createElement("div");
-    div.innerHTML = `<img src=${entrada.foto} data-aos="fade-up" class="fotos--Menu">
-                    <h3 class="nombres--Platos">${entrada.nombre}</h3>
-                    <h4 class="descripcion--Platos">${entrada.descripción} ($${entrada.precio})</h4>
-                    <button id="${entrada.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
-                    divEntradas2.appendChild(div)}
+    div.innerHTML = `<img src=${producto.foto} data-aos="fade-up" class="fotos--Menu">
+                     <h3 class="nombres--Platos">${producto.nombre}</h3>
+                     <h4 class="descripcion--Platos">${producto.descripción} ($${producto.precio})</h4>
+                     <button id="${producto.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
+                     lugarDondeLoPone.appendChild(div)
+    }
+}
 
-for (const platoPrincipal of platosPrincipales1) {
-    let div = document.createElement("div");
-    div.innerHTML = `<img src=${platoPrincipal.foto} data-aos="fade-up" class="fotos--Menu">
-                    <h3 class="nombres--Platos">${platoPrincipal.nombre}</h3>
-                    <h4 class="descripcion--Platos">${platoPrincipal.descripción} ($${platoPrincipal.precio})</h4>
-                    <button id="${platoPrincipal.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
-                    divPlatosPrincipales1.appendChild(div)}
+renderizarProductos(productos, entradas1, divEntradas1)
+renderizarProductos(productos, entradas2, divEntradas2)
+renderizarProductos(productos, platosPrincipales1, divPlatosPrincipales1)
+renderizarProductos(productos, platosPrincipales2, divPlatosPrincipales2)
+renderizarProductos(productos, postres1, divPostres1)
+renderizarProductos(productos, postres2, divPostres2)
 
-for (const platoPrincipal of platosPrincipales2) {
-    let div = document.createElement("div");
-    div.innerHTML = `<img src=${platoPrincipal.foto} data-aos="fade-up" class="fotos--Menu">
-                    <h3 class="nombres--Platos">${platoPrincipal.nombre}</h3>
-                    <h4 class="descripcion--Platos">${platoPrincipal.descripción} ($${platoPrincipal.precio})</h4>
-                    <button id="${platoPrincipal.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
-                    divPlatosPrincipales2.appendChild(div)}
 
-for (const postre of postres1) {
-    let div = document.createElement("div");
-    div.innerHTML = `<img src=${postre.foto} data-aos="fade-up" class="fotos--Menu">
-                    <h3 class="nombres--Platos">${postre.nombre}</h3>
-                    <h4 class="descripcion--Platos">${postre.descripción} ($${postre.precio})</h4>
-                    <button id="${postre.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
-                    divPostres1.appendChild(div)}
 
-for (const postre of postres2) {
-    let div = document.createElement("div");
-    div.innerHTML = `<img src=${postre.foto} data-aos="fade-up" class="fotos--Menu">
-                    <h3 class="nombres--Platos">${postre.nombre}</h3>
-                    <h4 class="descripcion--Platos">${postre.descripción} ($${postre.precio})</h4>
-                    <button id="${postre.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
-                    divPostres2.appendChild(div)}
-*/
+
 
 // SELECCIONAR BOTONES
 
@@ -115,8 +86,8 @@ const botones = document.getElementsByClassName(`color--Boton`)
 const carrito = []
 
 function agregarAlCarrito(){
-    const seleccionado = entradas1.find(entrada => entrada.id == this.id);
-    const existe = carrito.find(entrada => entrada.id == this.id)
+    const seleccionado = productos.find(producto => producto.id == this.id);
+    const existe = carrito.find(producto => producto.id == this.id)
 
     
     let posicion = carrito.indexOf(existe)
@@ -155,4 +126,4 @@ for (const boton of botones) {
 
 // AGREGAR AL STORAGE
 
-localStorage.setItem("CARRITO", JSON.stringify(carrito));
+sessionStorage.setItem("CARRITO", JSON.stringify(carrito))
