@@ -115,6 +115,7 @@ for (const postre of postres2) {
 const botones = document.getElementsByClassName(`color--Boton`)
 
 
+
 // AGREGAR COSAS AL CARRITO
 
 const carrito = []
@@ -122,7 +123,6 @@ const carrito = []
 function agregarAlCarrito(){
     const seleccionado = entradas1.find(entrada => entrada.id == this.id);
     const existe = carrito.find(entrada => entrada.id == this.id)
-
 
     
     let posicion = carrito.indexOf(existe)
@@ -159,3 +159,6 @@ for (const boton of botones) {
 
 
 
+// AGREGAR AL STORAGE
+
+localStorage.setItem("CARRITO", JSON.stringify(carrito));

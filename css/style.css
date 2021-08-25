@@ -103,8 +103,7 @@
   transform: translate(300px, -60px); }
 
 .ubicacion--Logo {
-  padding-top: 36px;
-  transform: translateX(-180px); }
+  padding-top: 36px; }
 
 .sticky {
   background-color: white;
@@ -121,7 +120,6 @@
   padding-top: 30px; }
 
 .fotos--Menu {
-  /* width: 450px; */
   height: 320px;
   padding: 7px; }
 
@@ -246,7 +244,7 @@ h2 span {
 
 .containerMenu {
   display: flex;
-	flex-flow: row nowrap; }
+  flex-flow: row nowrap; }
 
 .titulo--SeccionR {
   padding-bottom: 30px; }
