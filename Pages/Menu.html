@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--SEO-->
+	<title>Menú Bambino</title>
+	<meta name="keywords" content="BAMBINO, MENÚ, RESTAURANTE, COMIDA, ITALIA, ENTRADAS, PLATOS PRINCIPALES, POSTRES">
+	<!--JS-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--Google fonts-->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <!--AOS-->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<!--Mi CSS-->
+    <link rel="stylesheet" href="../css/style.css">
+
+
+</head>
+<body>
+	<!--Comienzo header-->
+	<header class="container-fluid">
+    <div class="row">
+		<div class="col-lg-3 col-sm-3 col-xs-3"></div>
+		<a href="../index.html"><img src="../Assets/Imagenes/logo3.png" class="ubicacion--Logo img-fluid" alt="logo" width="100" height="100"></a>
+        </div>
+      <div class="col-lg-9 col-sm-9 col-xs-9">
+         <nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto ubicacion--Barra" id="arriba">
+      <li class="nav-item active">
+        <a class="nav-link itemsMenu2" href="../index.html">HOME <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link itemsMenu2" href="Menu.html">MENÚ</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link itemsMenu2" href="Galeria.html">GALERÍA</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link itemsMenu2" href="Reservas.html">RESERVAS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link itemsMenu2" href="Contacto.html" tabindex="-1">CONTACTO</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+      </div>
+    </div>
+</header>
+	<!--Final header-->
+	<!--Comienzo Menú-->
+    <div class="container-fluid">
+    	<div class="row">
+    		<div class="col-lg-12 col-sm-12 col-xs-12">
+    			<h1 class="titulo--Seccion">Menú</h1>
+    		</div>
+	    	<div class="col-lg-12 col-sm-12 col-xs-12">
+			<ul class="nav opciones">
+			  <li class="nav-item">
+			    <a class="nav-link active pasos" aria-current="page" href="#entradas">Entradas</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link pasos" href="#platosPrincipales">Platos principales</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link pasos" href="#postres">Postres</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link pasos" href="#bebidas" tabindex="-1" aria-disabled="true">Bebidas</a>
+			  </li>
+			</ul>
+    		</div>
+    </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+	Carrito
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Tu carrito</h5>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		  
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+		  <button type="button" class="btn btn-primary">Confirmar compra</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+	
+	<div class="row">
+		
+		<h2 class="seccion--MenuE">Entradas</h2>
+		<div>
+			<div class="containerMenu" id="entradas1"></div>
+			<div class="containerMenu" id="entradas2"></div>
+		</div>
+		
+		<h2 class="seccion--Menu">Platos principales</h2>
+		<div>
+			<div class="containerMenu" id="platosPrincipales1"></div>
+			<div class="containerMenu" id="platosPrincipales2"></div>
+		</div>	
+
+		<h2 class="seccion--Menu">Postres</h2>
+		<div>
+			<div class="containerMenu" id="postres1"></div>
+			<div class="containerMenu" id="postres2"></div>
+		</div>
+			
+			<h2 id="bebidas" class="seccion--Menu">Bebidas</h2>
+			<div id="bebidas1"></div>
+			
+			<div class="col-lg-6 col-sm-6 col-xs-6">
+				<h4 class="volver--Arriba"><a href="#arriba" class="volver--Arriba">VOLVER ARRIBA</a></h4>    			
+			</div>
+
+	</div>
+	
+  		<div class="row">
+  			<div class="col-lg-4 col-sm-12 col-xs-12">
+  				<table cellpadding="50px">
+  					<tr>
+  						<td class="texto--Bebidas">Agua</td>
+  						<td class="texto--Bebidas">$80</td>
+  					</tr>
+  					<tr>
+  						<td class="texto--Bebidas">Gaseosa</td>
+  						<td class="texto--Bebidas">$90</td>
+  					</tr>
+  					<tr>
+  						<td class="texto--Bebidas">Cerveza</td>
+  						<td class="texto--Bebidas">$150</td>
+  					</tr>
+  				</table>
+  			</div>
+  			<div class="col-lg-4 col-sm-12 col-xs-12">
+  				<table cellpadding="50px">
+  					<tr>
+  						<td class="texto--Bebidas">Café</td>
+  						<td class="texto--Bebidas">$100</td>
+  					</tr>
+  					<tr>
+  						<td class="texto--Bebidas">Té</td>
+  						<td class="texto--Bebidas">$60</td>
+  					</tr>
+  					<tr>
+  						<td class="texto--Bebidas">Limonada</td>
+  						<td class="texto--Bebidas">$250</td>
+  					</tr>
+  				</table>
+  			</div>
+  			<div class="col-lg-4 col-sm-12 col-xs-12">
+  				<table cellpadding="50px">
+  					<tr>
+  						<td class="texto--Bebidas">Copa de vino</td>
+  						<td class="texto--Bebidas">$150</td>
+  					</tr>
+  					<tr>
+  						<td class="texto--Bebidas">Botella de vino</td>
+  						<td class="texto--Bebidas">$850</td>
+  					</tr>
+  					<tr>
+  						<td class="texto--Bebidas">Champagne</td>
+  						<td class="texto--Bebidas">$500</td>
+  					</tr>
+  				</table>
+  			</div>
+  		</div>
+
+
+
+  </div>
+  <!--Final Menú-->
+  <!--Comienzo footer-->
+    <footer class="container-fluid bg--Footer">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12 col-xs-12">
+       <img src="../Assets/Imagenes/logo2.png" class="logo--Footer" alt="logo" width="100" height="100">   
+      </div>
+      <div class="col-lg-4 col-sm-12 col-xs-12">
+        <h3 class="titulo--Horarios">Horarios</h3>
+        <table class="tabla--Horarios" cellpadding="10px">
+          <tr>
+            <td>Lunes</td>
+            <td>Cerrado</td>
+          </tr>
+          <tr>
+            <td>Martes a viernes</td>
+            <td>11:00 a 23:00</td>
+          </tr>
+          <tr>
+            <td>Sábados y domingos</td>
+            <td>11:00 a 24:00</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-lg-4 col-sm-12 col-xs-12">
+       <ul class="redes--Sociales">
+        <li><a href="https://www.twitter.com/" target="_blank"><img src="../Assets/Imagenes/twitter.png" alt="tw" width="50" height="50"></a></li>
+        <li><a href="https://www.instagram.com/" target="_blank"><img src="../Assets/Imagenes/instagram.png" alt="inst" width="50" height="50"></a></li>
+        <li><a href="https://www.facebook.com/" target="_blank"><img src="../Assets/Imagenes/facebook.png" alt="face" width="50" height="50"></a></li>                              
+       </ul>
+
+      </div>
+    </div>
+
+  </footer>
+  <!--Final footer-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script src="../JS/Menu.js"></script>
+<script>
+	AOS.init();
+</script>
+</body>
+</html>
