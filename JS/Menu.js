@@ -102,6 +102,9 @@ function agregarAlCarrito(){
         carrito[posicion].cantidad += 1
     }
 
+
+localStorage.setItem("CARRITO", JSON.stringify(carrito))
+
     divCarrito.innerHTML = ``
 
 
@@ -124,6 +127,3 @@ for (const boton of botones) {
 
 
 
-// AGREGAR AL STORAGE
-
-sessionStorage.setItem("CARRITO", JSON.stringify(carrito))
