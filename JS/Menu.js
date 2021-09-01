@@ -77,7 +77,7 @@ renderizarProductos(productos, postres2, divPostres2)
 
 // SELECCIONAR BOTONES
 
-const botones = document.getElementsByClassName(`color--Boton`)
+const botones = $(".color--Boton")
 
 
 
@@ -105,25 +105,36 @@ function agregarAlCarrito(){
 
 localStorage.setItem("CARRITO", JSON.stringify(carrito))
 
+// ESTRUCTURA HTML DEL CARRITO
+
     divCarrito.innerHTML = ``
 
 
 for (const element of carrito){
-    let div = document.createElement(`div`)
-    div.innerHTML = `
+    $(".modal-body").append( `
     <h4>${element.nombre}</h4>
     <p>$${element.precio}</p>
-    <p>Cantidad: ${element.cantidad}</p>`
+    <p>Cantidad: ${element.cantidad}</p>
+    <a id="${element.id}" class="btn btn-danger btn-delete">X</a>`)
 
-    divCarrito.appendChild(div)
 }
 
 }
 
 
 for (const boton of botones) {
-    boton.addEventListener("click", agregarAlCarrito)
+    boton.onclick = agregarAlCarrito;
+}
+
+
+// ELIMINAR COSAS DEL CARRITO
+
+function eliminarCarrito(e){
+    let posicion = carrito.findIndex(p => p.id = e.target.id)
+    carrito.slice(posicion, 1);
+    agregarAlCarrito(carrito);
 }
 
 
 
+$(".btn-delete").click(eliminarCarrito);

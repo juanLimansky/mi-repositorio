@@ -1,6 +1,6 @@
 // DESAFIO CLASE 9
 
-const botonFormulario = document.getElementById(`botonFormulario`);
+const botonFormulario = $("#botonFormulario");
 
 console.dir(botonFormulario);
 
