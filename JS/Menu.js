@@ -1,7 +1,3 @@
-
-
-// DESAFIO CLASE 8
-
 // MIS VARIABLES GLOBALES
 
 let divEntradas1 = document.querySelector('#entradas1')
@@ -52,7 +48,6 @@ const bebidas = [
 
 const renderizarProductos = (productos, categoria, lugarDondeLoPone) => {
     const arrayDePrueba = productos.filter(producto => producto.categoria == categoria)
-    console.log(arrayDePrueba)
 
 for (const producto of arrayDePrueba) {
     let div = document.createElement("div");
@@ -70,16 +65,6 @@ renderizarProductos(productos, platosPrincipales1, divPlatosPrincipales1)
 renderizarProductos(productos, platosPrincipales2, divPlatosPrincipales2)
 renderizarProductos(productos, postres1, divPostres1)
 renderizarProductos(productos, postres2, divPostres2)
-
-
-
-
-
-// SELECCIONAR BOTONES
-
-const botones = $(".color--Boton")
-
-
 
 // AGREGAR COSAS AL CARRITO
 
@@ -119,22 +104,54 @@ for (const element of carrito){
 
 }
 
+// ELIMINAR COSAS DEL CARRITO
+
+function eliminarCarrito(e){
+    let posicion = carrito.findIndex(p => p.id = e.target.id)
+    carrito.slice(posicion, 1);
+  //  agregarAlCarrito(carrito);
 }
 
+
+
+$(".btn-delete").click(eliminarCarrito);
+
+console.log(carrito)
+
+}
+
+
+// SELECCIONAR BOTONES
+
+const botones = $(".color--Boton")
 
 for (const boton of botones) {
     boton.onclick = agregarAlCarrito;
 }
 
 
-// ELIMINAR COSAS DEL CARRITO
+$(document).ready(
+    function() {
+        if ("carrito" in localStorage){
+            const data = JSON.parse(localStorage.getItem("carrito"))
+            for (const dato of data){
+                carrito.push(productos.nombre, productos.id, productos.descripción, productos.precio, productos.categoria, productos.foto, productos.cantidad)
+                console.log(carrito)
+                agregarAlCarrito();
+            }
+        }
+    }
+)
 
-function eliminarCarrito(e){
-    let posicion = carrito.findIndex(p => p.id = e.target.id)
-    carrito.slice(posicion, 1);
-    agregarAlCarrito(carrito);
-}
 
 
 
-$(".btn-delete").click(eliminarCarrito);
+
+
+
+
+
+
+
+
+
