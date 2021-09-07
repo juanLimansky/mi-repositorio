@@ -101,15 +101,15 @@ for (const element of carrito){
     <p>$${element.precio}</p>
     <p>Cantidad: ${element.cantidad}</p>
     <a id="${element.id}" class="btn btn-danger btn-delete">X</a>`)
-
+    console.log(carrito) 
 }
 
 // ELIMINAR COSAS DEL CARRITO
 
 function eliminarCarrito(e){
     let posicion = carrito.findIndex(p => p.id = e.target.id)
-    carrito.slice(posicion, 1);
-  //  agregarAlCarrito(carrito);
+    carrito.splice(posicion, 1);
+    agregarAlCarrito(carrito);
 }
 
 
