@@ -97,10 +97,12 @@ localStorage.setItem("CARRITO", JSON.stringify(carrito))
 
 for (const element of carrito){
     $(".modal-body").append( `
+    <div class="platosEnCarrito">
     <h4>${element.nombre}</h4>
     <p>$${element.precio}</p>
     <p>Cantidad: ${element.cantidad}</p>
-    <a id="${element.id}" class="btn btn-danger btn-delete">X</a>`)
+    <a id="${element.id}" class="btn btn-danger btn-delete">X</a>
+    </div>`)
     console.log(carrito) 
 }
 
@@ -109,8 +111,9 @@ for (const element of carrito){
 function eliminarCarrito(e){
     let posicion = carrito.findIndex(p => p.id = e.target.id)
     carrito.splice(posicion, 1);
-    agregarAlCarrito(carrito);
-}
+    console.log(e.target.parentNode)
+    $(e.target.parentNode).remove()
+    }
 
 
 

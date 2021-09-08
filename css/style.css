@@ -180,6 +180,10 @@
   padding-top: 20px;
   margin-top: 50px; }
 
+.platosEnCarrito {
+  display: flex;
+  justify-content: space-between; }
+
 .seccion--contacto {
   font-family: 'Playfair Display', serif;
   font-style: italic;
