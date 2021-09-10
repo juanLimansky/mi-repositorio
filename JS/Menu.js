@@ -11,6 +11,18 @@ let divCarrito = document.querySelector(`.modal-body`)
 
 // MIS ARRAYS
 
+class Producto {
+    constructor(id, categoria, nombre, descripción, precio, foto, cantidad) {
+        this.id = id;
+        this.categoria = categoria;
+        this.nombre = nombre;
+        this.descripción = descripción;
+        this.precio = precio;
+        this.foto = foto;
+        this.cantidad = cantidad;
+    }
+}
+
 const productos = []
 
 const bebidas = [
@@ -29,11 +41,11 @@ const bebidas = [
 
 // CARGA ASINCRONICA DE INFROMACION DE PRODUCTOS DE ORIGEN LOCAL (producto.json)
 
-$.get("./data/producto.json", function(datos, estado){
+$.get("../JS/data/producto.json", function(datos, estado){
     console.log(datos);
     console.log(estado);
     if(estado == "success") {
-        for(const productos of datos){
+        for(const producto of datos){
             productos.push(new Producto(productos.id, productos.categoria, productos.nombre, productos.descripción, productos.precio, productos.foto, productos.cantidad));
         }
         
