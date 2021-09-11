@@ -23,7 +23,7 @@ class Producto {
     }
 }
 
-const productos = []
+const platos = []
 
 const bebidas = [
     {nombre: "Agua", precio: 80}, 
@@ -46,7 +46,7 @@ $.get("../JS/data/producto.json", function(datos, estado){
     console.log(estado);
     if(estado == "success") {
         for(const producto of datos){
-            productos.push(new Producto(productos.id, productos.categoria, productos.nombre, productos.descripción, productos.precio, productos.foto, productos.cantidad));
+            platos.push(new Producto(producto.id, producto.categoria, producto.nombre, producto.descripción, producto.precio, producto.foto, producto.cantidad));
         }
         
     
@@ -65,12 +65,12 @@ for (const producto of arrayDePrueba) {
     }
 }
 
-renderizarProductos(productos, entradas1, divEntradas1)
-renderizarProductos(productos, entradas2, divEntradas2)
-renderizarProductos(productos, platosPrincipales1, divPlatosPrincipales1)
-renderizarProductos(productos, platosPrincipales2, divPlatosPrincipales2)
-renderizarProductos(productos, postres1, divPostres1)
-renderizarProductos(productos, postres2, divPostres2)
+renderizarProductos(platos, entradas1, divEntradas1)
+renderizarProductos(platos, entradas2, divEntradas2)
+renderizarProductos(platos, platosPrincipales1, divPlatosPrincipales1)
+renderizarProductos(platos, platosPrincipales2, divPlatosPrincipales2)
+renderizarProductos(platos, postres1, divPostres1)
+renderizarProductos(platos, postres2, divPostres2)
 
 
 
