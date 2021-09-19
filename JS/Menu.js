@@ -39,18 +39,7 @@ const bebidas = [
 
 // AGREGAR PRODUCTOS AL HTML
 
-// CARGA ASINCRONICA DE INFROMACION DE PRODUCTOS DE ORIGEN LOCAL (producto.json)
 
-$.get("../JS/data/producto.json", function(datos, estado){
-    console.log(datos);
-    console.log(estado);
-    if(estado == "success") {
-        for(const producto of datos){
-            platos.push(new Producto(producto.id, producto.categoria, producto.nombre, producto.descripción, producto.precio, producto.foto, producto.cantidad));
-        }
-        
-    
-}
 
 const renderizarProductos = (productos, categoria, lugarDondeLoPone) => {
     const arrayDePrueba = productos.filter(producto => producto.categoria == categoria)
@@ -147,16 +136,21 @@ $(document).ready(
             const data = JSON.parse(localStorage.getItem("carrito"))
             for (const dato of data){
                 carrito.push(productos.nombre, productos.id, productos.descripción, productos.precio, productos.categoria, productos.foto, productos.cantidad)
-                console.log(carrito)
+            }
                 agregarAlCarrito();
             }
+            // CARGA ASINCRONICA DE INFROMACION DE PRODUCTOS DE ORIGEN LOCAL (producto.json)
+
+$.get("../JS/data/producto.json", function(datos, estado){
+    console.log(datos);
+    console.log(estado);
+    if(estado == "success") {
+        for(const producto of datos){
+            platos.push(new Producto(producto.id, producto.categoria, producto.nombre, producto.descripción, producto.precio, producto.foto, producto.cantidad));
         }
     }
+    }
 )
-
-
-
-
 
 })
 
