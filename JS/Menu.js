@@ -37,12 +37,36 @@ const bebidas = [
     {nombre: "Champagne", precio: 500} 
 ]
 
+
+            // CARGA ASINCRONICA DE INFROMACION DE PRODUCTOS DE ORIGEN LOCAL (producto.json)
+
+
+            $(document).ready(
+                function() {
+                    if ("carrito" in localStorage){
+                        const data = JSON.parse(localStorage.getItem("carrito"))
+                        for (const dato of data){
+                            carrito.push(productos.nombre, productos.id, productos.descripción, productos.precio, productos.categoria, productos.foto, productos.cantidad)
+                        }
+                            agregarAlCarrito();
+                        }
+            
+            $.get("../JS/data/producto.json", function(datos, estado){
+                console.log(datos);
+                console.log(estado);
+                if(estado == "success") {
+                    for(const producto of datos){
+                        platos.push(new Producto(producto.id, producto.categoria, producto.nombre, producto.descripción, producto.precio, producto.foto, producto.cantidad));
+                    }
+                    console.log(platos);
+
+
 // AGREGAR PRODUCTOS AL HTML
 
 
 
 const renderizarProductos = (productos, categoria, lugarDondeLoPone) => {
-    const arrayDePrueba = productos.filter(producto => producto.categoria == categoria)
+    const arrayDePrueba = productos.filter(producto => producto.categoria == categoria.id)
 
 for (const producto of arrayDePrueba) {
     let div = document.createElement("div");
@@ -54,12 +78,26 @@ for (const producto of arrayDePrueba) {
     }
 }
 
-renderizarProductos(platos, entradas1, divEntradas1)
-renderizarProductos(platos, entradas2, divEntradas2)
-renderizarProductos(platos, platosPrincipales1, divPlatosPrincipales1)
-renderizarProductos(platos, platosPrincipales2, divPlatosPrincipales2)
-renderizarProductos(platos, postres1, divPostres1)
-renderizarProductos(platos, postres2, divPostres2)
+
+
+            renderizarProductos(platos, entradas1, divEntradas1)
+            renderizarProductos(platos, entradas2, divEntradas2)
+            renderizarProductos(platos, platosPrincipales1, divPlatosPrincipales1)
+            renderizarProductos(platos, platosPrincipales2, divPlatosPrincipales2)
+            renderizarProductos(platos, postres1, divPostres1)
+            renderizarProductos(platos, postres2, divPostres2)
+                }
+                }
+            )
+            
+            })
+
+
+
+
+
+
+
 
 
 
@@ -130,27 +168,4 @@ for (const boton of botones) {
 }
 
 
-$(document).ready(
-    function() {
-        if ("carrito" in localStorage){
-            const data = JSON.parse(localStorage.getItem("carrito"))
-            for (const dato of data){
-                carrito.push(productos.nombre, productos.id, productos.descripción, productos.precio, productos.categoria, productos.foto, productos.cantidad)
-            }
-                agregarAlCarrito();
-            }
-            // CARGA ASINCRONICA DE INFROMACION DE PRODUCTOS DE ORIGEN LOCAL (producto.json)
-
-$.get("../JS/data/producto.json", function(datos, estado){
-    console.log(datos);
-    console.log(estado);
-    if(estado == "success") {
-        for(const producto of datos){
-            platos.push(new Producto(producto.id, producto.categoria, producto.nombre, producto.descripción, producto.precio, producto.foto, producto.cantidad));
-        }
-    }
-    }
-)
-
-})
 
