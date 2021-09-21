@@ -76,6 +76,14 @@ for (const producto of arrayDePrueba) {
                      <button id="${producto.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
                      lugarDondeLoPone.appendChild(div)
     }
+    // SELECCIONAR BOTONES
+
+const botones = $(".color--Boton")
+
+for (const boton of botones) {
+    boton.onclick = agregarAlCarrito;
+}
+
 }
 
 
@@ -106,7 +114,7 @@ for (const producto of arrayDePrueba) {
 const carrito = []
 
 function agregarAlCarrito(){
-    const seleccionado = productos.find(producto => producto.id == this.id);
+    const seleccionado = platos.find(producto => producto.id == this.id);
     const existe = carrito.find(producto => producto.id == this.id)
 
     
@@ -159,13 +167,6 @@ console.log(carrito)
 }
 
 
-// SELECCIONAR BOTONES
-
-const botones = $(".color--Boton")
-
-for (const boton of botones) {
-    boton.onclick = agregarAlCarrito;
-}
 
 
 

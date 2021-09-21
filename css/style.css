@@ -248,7 +248,8 @@ h2 span {
 
 .containerMenu {
   display: flex;
-  flex-flow: row nowrap; }
+  flex-flow: row nowrap;
+  text-align: center; }
 
 .titulo--SeccionR {
   padding-bottom: 30px; }
