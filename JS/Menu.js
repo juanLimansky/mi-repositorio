@@ -38,6 +38,10 @@ const bebidas = [
 ]
 
 
+
+
+
+
             // CARGA ASINCRONICA DE INFROMACION DE PRODUCTOS DE ORIGEN LOCAL (producto.json)
 
 
@@ -104,11 +108,6 @@ for (const boton of botones) {
 
 
 
-
-
-
-
-
 // AGREGAR COSAS AL CARRITO
 
 const carrito = []
@@ -145,11 +144,13 @@ for (const element of carrito){
     <p>$${element.precio}</p>
     <p>Cantidad: ${element.cantidad}</p>
     <a id="${element.id}" class="btn btn-danger btn-delete">X</a>
+    <a id="${element.id}" class="btn btn-info btn-restar">-</a>
+    <a id="${element.id}" class="btn btn-warning btn-add">+</a>
     </div>`)
     console.log(carrito) 
 }
 
-// ELIMINAR COSAS DEL CARRITO
+// MANEJADOR PARA ELIMINAR COSAS DEL CARRITO
 
 function eliminarCarrito(e){
     let posicion = carrito.findIndex(p => p.id = e.target.id)
@@ -162,11 +163,57 @@ function eliminarCarrito(e){
 
 $(".btn-delete").click(eliminarCarrito);
 
-console.log(carrito)
 
 }
 
 
 
+// MANEJADOR PARA AGREGAR CANTIDAD EN EL CARRITO
 
+agregarCantidad(valor) ;{
+    this.cantidad += valor;
+}
+
+function addCantidad() {
+    let producto = carrito.find(p => p.id == this.id);
+    producto.agregarCantidad(1);
+    $(this).parent().children()[1].innerHTML = producto.cantidad;
+
+
+// GUARDAR EN STORAGE
+
+localStorage.setItem("CARRITO", JSON.stringify(carrito))
+
+
+
+// FUNCIÓN PARA EL BOTÓN DE AGREGAR
+
+$(".btn-add").click(addCantidad);
+
+
+
+// MANEJADOR PARA RESTAR CANTIDAD EN EL CARRITO
+
+function restarCantidad() {
+    let producto = carrito.find(p => p.id == this.id);
+    if (producto.cantidad > 1) {
+        producto.agregarCantidad(-1);
+
+        let registroUI = $(this).parent().children();
+        registroUI[1].innerHTML = producto.cantidad
+
+        // GUARDAR EN STORAGE
+
+localStorage.setItem("CARRITO", JSON.stringify(carrito))
+
+    }
+}
+
+
+// FUNCIÓN PARA EL BOTÓN DE RESTAR
+
+$(".btn-sub").click(restarCantidad);
+
+
+}
 
