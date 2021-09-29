@@ -164,7 +164,7 @@ function eliminarCarrito(e){
 $(".btn-delete").click(eliminarCarrito);
 
 
-}
+
 
 
 
@@ -216,4 +216,4 @@ $(".btn-sub").click(restarCantidad);
 
 
 }
-
+}
