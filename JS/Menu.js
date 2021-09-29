@@ -217,3 +217,5 @@ $(".btn-sub").click(restarCantidad);
 
 }
 }
+
+
