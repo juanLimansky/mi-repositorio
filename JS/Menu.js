@@ -21,6 +21,12 @@ class Producto {
         this.foto = foto;
         this.cantidad = cantidad;
     }
+    agregarCantidad(valor){
+        this.cantidad += valor;
+    }
+    subtotal() {
+        return this.cantidad * this.precio;
+      }
 }
 
 const platos = []
@@ -74,7 +80,7 @@ const renderizarProductos = (productos, categoria, lugarDondeLoPone) => {
 
 for (const producto of arrayDePrueba) {
     let div = document.createElement("div");
-    div.innerHTML = `<img src=${producto.foto} data-aos="fade-up" class="fotos--Menu">
+    div.innerHTML = `<img src=${producto.foto} class="fotos--Menu">
                      <h3 class="nombres--Platos">${producto.nombre}</h3>
                      <h4 class="descripcion--Platos">${producto.descripción} ($${producto.precio})</h4>
                      <button id="${producto.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
@@ -140,15 +146,21 @@ localStorage.setItem("CARRITO", JSON.stringify(carrito))
 for (const element of carrito){
     $(".modal-body").append( `
     <div class="platosEnCarrito">
-    <h4>${element.nombre}</h4>
-    <p>$${element.precio}</p>
-    <p>Cantidad: ${element.cantidad}</p>
+    <p>${element.nombre}</p>
+    <p> $${element.precio}</p>
+    <p> Cantidad: </p>
+    <p> ${element.cantidad}</p>
+    <p> -> </p>
+    <p> ${element.subtotal()}</p>
+
+
     <a id="${element.id}" class="btn btn-danger btn-delete">X</a>
     <a id="${element.id}" class="btn btn-info btn-restar">-</a>
     <a id="${element.id}" class="btn btn-warning btn-add">+</a>
     </div>`)
     console.log(carrito) 
 }
+
 
 // MANEJADOR PARA ELIMINAR COSAS DEL CARRITO
 
@@ -164,22 +176,14 @@ function eliminarCarrito(e){
 $(".btn-delete").click(eliminarCarrito);
 
 
-
-
-
-
 // MANEJADOR PARA AGREGAR CANTIDAD EN EL CARRITO
 
-
-
-agregarCantidad(valor);{
-    this.cantidad += valor;
-}
 
 function agregarCantidad() {
     let producto = carrito.find(p => p.id == this.id);
     producto.agregarCantidad(1);
-    $(this).parent().children()[1].innerHTML = producto.cantidad;
+    $(this).parent().children()[3].innerHTML = producto.cantidad;
+    $(this).parent().children()[5].innerHTML = producto.subtotal();
     console.log(carrito)
 
 
@@ -203,20 +207,23 @@ function restarCantidad() {
     if (producto.cantidad > 1) {
         producto.agregarCantidad(-1);
 
-        let registroUI = $(this).parent().children();
-        registroUI[1].innerHTML = producto.cantidad
+      // let registroUI = $(this).parent().children();
+       // registroUI[1].innerHTML = producto.cantidad
+        $(this).parent().children()[3].innerHTML = producto.cantidad;
+        $(this).parent().children()[5].innerHTML = producto.subtotal();
+    }
 
         // GUARDAR EN STORAGE
 
 localStorage.setItem("CARRITO", JSON.stringify(carrito))
 
-    }
+
 }
 
 
 // FUNCIÓN PARA EL BOTÓN DE RESTAR
 
-$(".btn-sub").click(restarCantidad);
+$(".btn-restar").click(restarCantidad);
 
 
 }
