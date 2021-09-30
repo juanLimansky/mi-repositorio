@@ -170,25 +170,29 @@ $(".btn-delete").click(eliminarCarrito);
 
 // MANEJADOR PARA AGREGAR CANTIDAD EN EL CARRITO
 
-agregarCantidad(valor) ;{
+
+
+agregarCantidad(valor);{
     this.cantidad += valor;
 }
 
-function addCantidad() {
+function agregarCantidad() {
     let producto = carrito.find(p => p.id == this.id);
     producto.agregarCantidad(1);
     $(this).parent().children()[1].innerHTML = producto.cantidad;
+    console.log(carrito)
+
 
 
 // GUARDAR EN STORAGE
 
 localStorage.setItem("CARRITO", JSON.stringify(carrito))
 
-
+}
 
 // FUNCIÓN PARA EL BOTÓN DE AGREGAR
 
-$(".btn-add").click(addCantidad);
+$(".btn-add").click(agregarCantidad);
 
 
 
@@ -215,7 +219,6 @@ localStorage.setItem("CARRITO", JSON.stringify(carrito))
 $(".btn-sub").click(restarCantidad);
 
 
-}
 }
 
 
