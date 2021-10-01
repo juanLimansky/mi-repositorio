@@ -112,8 +112,6 @@ for (const boton of botones) {
 
 
 
-
-
 // AGREGAR COSAS AL CARRITO
 
 const carrito = []
@@ -152,14 +150,14 @@ for (const element of carrito){
     <p> ${element.cantidad}</p>
     <p> -> </p>
     <p> ${element.subtotal()}</p>
-
-
     <a id="${element.id}" class="btn btn-danger btn-delete">X</a>
     <a id="${element.id}" class="btn btn-info btn-restar">-</a>
     <a id="${element.id}" class="btn btn-warning btn-add">+</a>
-    </div>`)
+    </div>
+    <p id="totalCarrito"> TOTAL ${totalCarrito(carrito)}</p>`)
     console.log(carrito) 
 }
+
 
 
 // MANEJADOR PARA ELIMINAR COSAS DEL CARRITO
@@ -171,12 +169,16 @@ function eliminarCarrito(e){
     $(e.target.parentNode).remove()
     }
 
+// GUARDAR EN STORAGE
 
+localStorage.setItem("CARRITO", JSON.stringify(carrito))
+
+// FUNCIÓN PARA EL BOTÓN DE ELIMINAR
 
 $(".btn-delete").click(eliminarCarrito);
 
 
-// MANEJADOR PARA AGREGAR CANTIDAD EN EL CARRITO
+// MANEJADOR PARA SUMAR CANTIDAD EN EL CARRITO
 
 
 function agregarCantidad() {
@@ -206,9 +208,6 @@ function restarCantidad() {
     let producto = carrito.find(p => p.id == this.id);
     if (producto.cantidad > 1) {
         producto.agregarCantidad(-1);
-
-      // let registroUI = $(this).parent().children();
-       // registroUI[1].innerHTML = producto.cantidad
         $(this).parent().children()[3].innerHTML = producto.cantidad;
         $(this).parent().children()[5].innerHTML = producto.subtotal();
     }
@@ -228,4 +227,43 @@ $(".btn-restar").click(restarCantidad);
 
 }
 
+// FUNCION PARA OBTENER EL PRECIO TOTAL DEL CARRITO
+function totalCarrito(carrito) {
+    console.log(carrito);
+    let total = 0;
+    carrito.forEach(p => total += p.subtotal());
+    return total.toFixed(2);
+  }
+  
+// FUNCION PARA ENVIAR AL BACKEND LA ORDEN DE PROCESAMIENTO DE COMPRA
+function confirmarCompra(){
 
+    // REALIZAMOS LA PETICION POST
+    const URLPOST = 'http://jsonplaceholder.typicode.com/posts';
+  
+    // INFORMACION A ENVIAR
+    const DATA = {productos: JSON.stringify(carrito), total: totalCarrito(carrito)}
+  
+    // PETICION POST CON AJAX
+    $.post(URLPOST, DATA, function(respuesta,estado){
+      //console.log(respuesta);
+        //console.log(estado);
+        if(estado == 'success'){
+          //MOSTRAMOS NOTIFICACION DE CONFIRMACIÓN (CON ANIMACIONES)
+          $("#notificaciones").html(`<div class="alert alert-sucess alert-dismissible fade show" role="alert">
+                      <strong>COMPRA CONFIRMADA!</strong> Comprobante Nº ${respuesta.id}.
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>`).fadeIn().delay(2000);
+                    }
+          //VACIAR CARRITO;
+          carrito.splice(0, carrito.length);
+          //SOBREESCRIBIR ALMACENADO EN STORAGE
+          localStorage.setItem("CARRITO",'[]');
+        }
+    )}
+
+    // FUNCIÓN PARA EL BOTÓN CONFIRMAR COMPRA
+
+    $("#btnConfirmar").click(confirmarCompra);
