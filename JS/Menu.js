@@ -86,7 +86,7 @@ for (const producto of arrayDePrueba) {
                      <button id="${producto.id}" class="btn btn-outline-secondary color--Boton">COMPRAR</button>`;
                      lugarDondeLoPone.appendChild(div)
     }
-    // SELECCIONAR BOTONES
+    // FUNCIÓN PARA EL BOTÓN DE AGREGAR AL CARRITO
 
 const botones = $(".color--Boton")
 
@@ -153,11 +153,10 @@ for (const element of carrito){
     <a id="${element.id}" class="btn btn-danger btn-delete">X</a>
     <a id="${element.id}" class="btn btn-info btn-restar">-</a>
     <a id="${element.id}" class="btn btn-warning btn-add">+</a>
-    </div>
-    <p id="totalCarrito"> TOTAL ${totalCarrito(carrito)}</p>`)
+    </div>`)
     console.log(carrito) 
 }
-
+$(".modal-body").append( `<p id="totalCarrito"> TOTAL ${totalCarrito(carrito)}</p>`)
 
 
 // MANEJADOR PARA ELIMINAR COSAS DEL CARRITO
@@ -238,18 +237,18 @@ function totalCarrito(carrito) {
 // FUNCION PARA ENVIAR AL BACKEND LA ORDEN DE PROCESAMIENTO DE COMPRA
 function confirmarCompra(){
 
-    // REALIZAMOS LA PETICION POST
+// REALIZAMOS LA PETICION POST
     const URLPOST = 'http://jsonplaceholder.typicode.com/posts';
   
-    // INFORMACION A ENVIAR
+// INFORMACION A ENVIAR
     const DATA = {productos: JSON.stringify(carrito), total: totalCarrito(carrito)}
   
-    // PETICION POST CON AJAX
+// PETICION POST CON AJAX
     $.post(URLPOST, DATA, function(respuesta,estado){
-      //console.log(respuesta);
-        //console.log(estado);
+//console.log(respuesta);
+//console.log(estado);
         if(estado == 'success'){
-          //MOSTRAMOS NOTIFICACION DE CONFIRMACIÓN (CON ANIMACIONES)
+//MOSTRAR NOTIFICACION DE CONFIRMACIÓN 
           $("#notificaciones").html(`<div class="alert alert-sucess alert-dismissible fade show" role="alert">
                       <strong>COMPRA CONFIRMADA!</strong> Comprobante Nº ${respuesta.id}.
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -257,9 +256,9 @@ function confirmarCompra(){
                       </button>
                       </div>`).fadeIn().delay(2000);
                     }
-          //VACIAR CARRITO;
+     //VACIAR CARRITO;
           carrito.splice(0, carrito.length);
-          //SOBREESCRIBIR ALMACENADO EN STORAGE
+     //SOBREESCRIBIR ALMACENADO EN STORAGE
           localStorage.setItem("CARRITO",'[]');
         }
     )}
