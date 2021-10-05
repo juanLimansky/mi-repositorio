@@ -149,14 +149,14 @@ for (const element of carrito){
     <p> Cantidad: </p>
     <p> ${element.cantidad}</p>
     <p> -> </p>
-    <p> ${element.subtotal()}</p>
+    <p> $${element.subtotal()}</p>
     <a id="${element.id}" class="btn btn-danger btn-delete">X</a>
     <a id="${element.id}" class="btn btn-info btn-restar">-</a>
     <a id="${element.id}" class="btn btn-warning btn-add">+</a>
     </div>`)
     console.log(carrito) 
 }
-$(".modal-body").append( `<p id="totalCarrito"> TOTAL ${totalCarrito(carrito)}</p>`)
+$(".modal-body").append( `<p id="totalCarrito"> TOTAL $${totalCarrito(carrito)}</p>`)
 
 
 // MANEJADOR PARA ELIMINAR COSAS DEL CARRITO
@@ -181,10 +181,18 @@ $(".btn-delete").click(eliminarCarrito);
 
 
 function agregarCantidad() {
+    console.log(totalCarrito(carrito))
+
+ 
     let producto = carrito.find(p => p.id == this.id);
     producto.agregarCantidad(1);
     $(this).parent().children()[3].innerHTML = producto.cantidad;
     $(this).parent().children()[5].innerHTML = producto.subtotal();
+    console.log(totalCarrito(carrito))
+    $(this).parent().children().innerHTML = totalCarrito(carrito);
+    $('#totalCarrito').remove()
+   $(".modal-body").append( `<p id="totalCarrito"> TOTAL $${totalCarrito(carrito)}</p>`)
+
     console.log(carrito)
 
 
@@ -209,6 +217,9 @@ function restarCantidad() {
         producto.agregarCantidad(-1);
         $(this).parent().children()[3].innerHTML = producto.cantidad;
         $(this).parent().children()[5].innerHTML = producto.subtotal();
+        $(this).parent().children().innerHTML = totalCarrito(carrito);
+        $('#totalCarrito').remove()
+       $(".modal-body").append( `<p id="totalCarrito"> TOTAL $${totalCarrito(carrito)}</p>`)
     }
 
         // GUARDAR EN STORAGE
@@ -228,6 +239,7 @@ $(".btn-restar").click(restarCantidad);
 
 // FUNCION PARA OBTENER EL PRECIO TOTAL DEL CARRITO
 function totalCarrito(carrito) {
+    console.log("Totcarrito")
     console.log(carrito);
     let total = 0;
     carrito.forEach(p => total += p.subtotal());
