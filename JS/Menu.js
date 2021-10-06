@@ -278,3 +278,5 @@ function confirmarCompra(){
     // FUNCIÓN PARA EL BOTÓN CONFIRMAR COMPRA
 
     $("#btnConfirmar").click(confirmarCompra);
+
+    localStorage.clear();
